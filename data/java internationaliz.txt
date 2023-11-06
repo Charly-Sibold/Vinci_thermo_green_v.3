@@ -1,0 +1,26 @@
+choiceLangue = new JComboBox<String>();
+		choiceLangue.addItem("French");
+		choiceLangue.addItem("English");
+		choiceLangue.addItem("Spanish");
+		choiceLangue.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+		            String selectedLanguage = (String) choiceLangue.getSelectedItem();
+		            if (selectedLanguage.equals("English")) {
+		                Locale.setDefault(new Locale("en", "US")); 
+		            } else if (selectedLanguage.equals("French")) {
+		                Locale.setDefault(new Locale("fr", "FR")); 
+		            } else if (selectedLanguage.equals("Spanish")) {
+		            	Locale.setDefault(new Locale("es", "ES"));
+		            }
+		            ResourceBundle messages = ResourceBundle.getBundle("data.Messages");
+		             System.out.println("Locale par défaut : " + Locale.getDefault());
+		            
+		            lblLogin.setText(messages.getString("loginLabel"));
+		            lblPassword.setText(messages.getString("passwordLabel"));
+		            btnLogin.setText(messages.getString("loginButton"));
+		        }
+			}
+		});
+		choiceLangue.setBounds(388, 22, 106, 21);
+		panel.add(choiceLangue);
